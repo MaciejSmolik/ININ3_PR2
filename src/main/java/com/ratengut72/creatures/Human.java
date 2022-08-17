@@ -4,6 +4,7 @@ public class Human {
 
     private String firstName;
     private String lastName;
+    Animal animal;
 
     public String getFirstName() {
         return firstName;
