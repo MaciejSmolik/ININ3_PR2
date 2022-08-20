@@ -29,5 +29,10 @@ public class Main {
         Human human = new Human("Karol", "Krawczyk");
         Car car = new Car("VW","Gold",1690.0);
         human.car = car;
+
+        //task03 & 04
+        human.getSalary();
+        human.setSalary(-1d);
+        human.setSalary(2000d);
     }
 }
