@@ -1,16 +1,18 @@
 package com.ratengut72.devices;
 
-public class Car {
+public class Car extends Device {
 
-    private final String producer;
-    private final String model;
     private Double weight;
     public Double price = 0d;
 
-    public Car(String producer, String model, Double weight) {
-        this.producer = producer;
-        this.model = model;
+    public Car(String producer, String model, Double weight, int yearOfProduction) {
+        super(producer,model,yearOfProduction);
         this.weight = weight;
+    }
+
+    @Override
+    public void turnOn() {
+        System.out.println("Car turned on");
     }
 
     @Override

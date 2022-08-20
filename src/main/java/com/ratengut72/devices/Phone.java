@@ -1,31 +1,22 @@
 package com.ratengut72.devices;
 
-public class Phone {
+public class Phone extends Device {
 
-    private String name;
-    private String model;
-
-    public String getName() {
-        return name;
+    public Phone(String producer, String model, int yearOfProduction) {
+        super(producer, model, yearOfProduction);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    @Override
+    public void turnOn() {
+        System.out.println("Phone turned on");
     }
 
     @Override
     public String toString() {
         return "Phone{" +
-                "name='" + name + '\'' +
+                "producer='" + producer + '\'' +
                 ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
 }

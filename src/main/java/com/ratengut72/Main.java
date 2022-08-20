@@ -3,6 +3,8 @@ package com.ratengut72;
 import com.ratengut72.creatures.Animal;
 import com.ratengut72.creatures.Human;
 import com.ratengut72.devices.Car;
+import com.ratengut72.devices.Device;
+import com.ratengut72.devices.Phone;
 
 public class Main {
 
@@ -31,7 +33,7 @@ public class Main {
 
         //task02
         Human human = new Human("Karol", "Krawczyk");
-        Car car = new Car("VW","Gold",1690.0);
+        Car car = new Car("VW","Gold",1690.0,2010);
 
         //task03 & 04
         human.getSalary();
@@ -44,12 +46,21 @@ public class Main {
 
         //task06
         System.out.println(dog);
-        Car vwFirst = new Car("VW", "Polo",1670.0);
-        Car vwSecond = new Car("VW", "Polo",1670.0);
-        Car vwThird = new Car("VW", "Golf",1670.0);
+        Car vwFirst = new Car("VW", "Polo",1670.0,2010);
+        Car vwSecond = new Car("VW", "Polo",1670.0,2010);
+        Car vwThird = new Car("VW", "Golf",1670.0,2010);
         System.out.println(vwFirst.equals(vwSecond));
         System.out.println(vwFirst.equals(vwThird));
         System.out.println(vwFirst);
         System.out.println(vwSecond);
+
+        //task07
+        Phone phone = new Phone("Xiaomi", "Mi 9",2019);
+        Device fiat = new Car("Fiat", "Grande punto", 1430.0, 2010);
+
+        System.out.println(phone);
+        System.out.println(fiat);
+        phone.turnOn();
+        car.turnOn();
     }
 }
