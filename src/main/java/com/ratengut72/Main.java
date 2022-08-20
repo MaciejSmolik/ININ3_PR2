@@ -1,4 +1,8 @@
-package com.ratengut72.creatures;
+package com.ratengut72;
+
+import com.ratengut72.creatures.Animal;
+import com.ratengut72.creatures.Human;
+import com.ratengut72.devices.Car;
 
 public class Main {
 
@@ -37,5 +41,15 @@ public class Main {
         //task05
         car.price = 2500d;
         human.setCar(car);
+
+        //task06
+        System.out.println(dog);
+        Car vwFirst = new Car("VW", "Polo",1670.0);
+        Car vwSecond = new Car("VW", "Polo",1670.0);
+        Car vwThird = new Car("VW", "Golf",1670.0);
+        System.out.println(vwFirst.equals(vwSecond));
+        System.out.println(vwFirst.equals(vwThird));
+        System.out.println(vwFirst);
+        System.out.println(vwSecond);
     }
 }

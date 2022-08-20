@@ -1,4 +1,4 @@
-package com.ratengut72.creatures;
+package com.ratengut72.devices;
 
 public class Phone {
 
@@ -19,5 +19,13 @@ public class Phone {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                '}';
     }
 }

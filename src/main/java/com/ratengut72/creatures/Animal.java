@@ -44,4 +44,13 @@ public class Animal {
             System.out.println(String.format("Decreasing weight of this animal from: %f to %f", actual, weight));
         }
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "species='" + species + '\'' +
+                ", weight=" + weight +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 package com.ratengut72.creatures;
 
+import com.ratengut72.devices.Car;
+
 import java.time.LocalDate;
 
 public class Human {
@@ -62,5 +64,16 @@ public class Human {
         } else {
             System.out.println("Better go study or ask your boss for a raise");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", animal=" + animal +
+                ", car=" + car +
+                '}';
     }
 }
