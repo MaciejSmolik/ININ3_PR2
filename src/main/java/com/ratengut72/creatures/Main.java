@@ -24,5 +24,10 @@ public class Main {
         mouse.takeForAWalk();
         mouse.takeForAWalk();
         mouse.feed();
+
+        //task02
+        Human human = new Human("Karol", "Krawczyk");
+        Car car = new Car("VW","Gold",1690.0);
+        human.car = car;
     }
 }
