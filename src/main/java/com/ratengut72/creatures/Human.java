@@ -8,7 +8,7 @@ public class Human {
     private String lastName;
     private Double salary = 0d;
     Animal animal;
-    Car car;
+    private Car car;
 
     public Human(String firstName, String lastName) {
         this.firstName = firstName;
@@ -45,6 +45,22 @@ public class Human {
             System.out.println("Please take annex from HR");
             System.out.println("ZUS and US know about new salary");
             this.salary = salary;
+        }
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        if (this.salary > car.price) {
+            System.out.println("Car bought by cash");
+            this.car = car;
+        } else if (this.salary > car.price / 12.0) {
+            System.out.println("Car bought by loan");
+            this.car = car;
+        } else {
+            System.out.println("Better go study or ask your boss for a raise");
         }
     }
 }
