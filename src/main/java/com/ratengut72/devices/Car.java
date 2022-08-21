@@ -3,7 +3,7 @@ package com.ratengut72.devices;
 import com.ratengut72.creatures.Human;
 import com.ratengut72.creatures.Sellable;
 
-public class Car extends Device implements Sellable {
+public abstract class Car extends Device implements Sellable {
 
     private Double weight;
     public Double price = 0d;
@@ -12,6 +12,8 @@ public class Car extends Device implements Sellable {
         super(producer,model,yearOfProduction);
         this.weight = weight;
     }
+
+    public abstract void refuel();
 
     @Override
     public void turnOn() {

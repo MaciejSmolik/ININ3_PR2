@@ -6,11 +6,16 @@ import com.ratengut72.creatures.Human;
 import com.ratengut72.creatures.Pet;
 import com.ratengut72.devices.Car;
 import com.ratengut72.devices.Device;
+import com.ratengut72.devices.Diesel;
 import com.ratengut72.devices.Phone;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         //task 01
         Animal dog = new Pet("dog","Fafik");
         dog.feed();
@@ -35,7 +40,7 @@ public class Main {
 
         //task02
         Human human = new Human("Karol", "Krawczyk");
-        Car car = new Car("VW","Gold",1690.0,2010);
+        Car car = new Diesel("VW","Gold",1690.0,2010);
 
         //task03 & 04
         human.getSalary();
@@ -48,9 +53,9 @@ public class Main {
 
         //task06
         System.out.println(dog);
-        Car vwFirst = new Car("VW", "Polo",1670.0,2010);
-        Car vwSecond = new Car("VW", "Polo",1670.0,2010);
-        Car vwThird = new Car("VW", "Golf",1670.0,2010);
+        Car vwFirst = new Diesel("VW", "Polo",1670.0,2010);
+        Car vwSecond = new Diesel("VW", "Polo",1670.0,2010);
+        Car vwThird = new Diesel("VW", "Golf",1670.0,2010);
         System.out.println(vwFirst.equals(vwSecond));
         System.out.println(vwFirst.equals(vwThird));
         System.out.println(vwFirst);
@@ -58,7 +63,7 @@ public class Main {
 
         //task07
         Phone phone = new Phone("Xiaomi", "Mi 9",2019);
-        Device fiat = new Car("Fiat", "Grande punto", 1430.0, 2010);
+        Device fiat = new Diesel("Fiat", "Grande punto", 1430.0, 2010);
 
         System.out.println(phone);
         System.out.println(fiat);
@@ -72,7 +77,7 @@ public class Main {
         seller.setCash(2000d);
         Phone xiaomi = new Phone("Xiaomi", "Mi 9",2019);
         seller.setPhone(xiaomi);
-        Car automobile = new Car("Fiat", "Grande punto", 1430.0, 2010);
+        Car automobile = new Diesel("Fiat", "Grande punto", 1430.0, 2010);
         seller.setCar(automobile);
         seller.animal = null;
         xiaomi.sell(seller,buyer,950d);
@@ -92,5 +97,12 @@ public class Main {
         farm.beEaten();
         System.out.println(farm);
         farm.feed();
+
+        //task10
+        xiaomi.installAnApp("Google Maps");
+        xiaomi.installAnApp("Google Maps", "1.0");
+        xiaomi.installAnApp("Google Maps", "1.0", "http://8.8.8.8:80");
+        xiaomi.installAnApp(List.of("Google Maps", "Facebook", "Instagram"));
+        xiaomi.installAnApp(new URL("HTTP", "8.8.8.8", "/maps"));
     }
 }
