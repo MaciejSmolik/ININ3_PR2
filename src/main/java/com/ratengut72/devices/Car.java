@@ -1,6 +1,9 @@
 package com.ratengut72.devices;
 
-public class Car extends Device {
+import com.ratengut72.creatures.Human;
+import com.ratengut72.creatures.Sellable;
+
+public class Car extends Device implements Sellable {
 
     private Double weight;
     public Double price = 0d;
@@ -13,6 +16,25 @@ public class Car extends Device {
     @Override
     public void turnOn() {
         System.out.println("Car turned on");
+    }
+
+    @Override
+    public boolean sell(Human seller, Human buyer, Double price) {
+        if (seller.getCar()== null || !seller.getCar().equals(this))  {
+            System.out.println("Seller doesn't have that car for sell. It's scam.");
+            return false;
+        }
+        if (buyer.getCash() < price) {
+            System.out.println("Buyer doesn't have enough money. Aborting.");
+            return false;
+        }
+
+        buyer.setCar(this);
+        seller.setCar(null);
+        seller.addMoney(price);
+        buyer.decreaseMoney(price);
+        System.out.println("Transaction between " + seller + " and " + buyer + " is done successfully.");
+        return true;
     }
 
     @Override

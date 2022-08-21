@@ -1,16 +1,20 @@
 package com.ratengut72.creatures;
 
 import com.ratengut72.devices.Car;
+import com.ratengut72.devices.Phone;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Human {
 
     private String firstName;
     private String lastName;
     private Double salary = 0d;
-    Animal animal;
+    private Double cash = 0d;
+    public Animal animal;
     private Car car;
+    private Phone phone;
 
     public Human(String firstName, String lastName) {
         this.firstName = firstName;
@@ -55,15 +59,46 @@ public class Human {
     }
 
     public void setCar(Car car) {
-        if (this.salary > car.price) {
-            System.out.println("Car bought by cash");
-            this.car = car;
-        } else if (this.salary > car.price / 12.0) {
-            System.out.println("Car bought by loan");
-            this.car = car;
-        } else {
-            System.out.println("Better go study or ask your boss for a raise");
+        if (Objects.nonNull(car)) {
+            if (this.salary >= car.price) {
+                System.out.println("Car bought by cash");
+                this.car = car;
+            } else if (this.salary > car.price / 12.0) {
+                System.out.println("Car bought by loan");
+                this.car = car;
+            } else {
+                System.out.println("Better go study or ask your boss for a raise");
+            }
         }
+        else
+            this.car = null;
+    }
+
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public Double getCash() {
+        return cash;
+    }
+
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+
+    public void addMoney(Double amount) {
+        if (Objects.nonNull(amount))
+            cash += amount;
+    }
+
+    public void decreaseMoney(Double amount) {
+        if (Objects.nonNull(amount))
+            cash -= amount;
     }
 
     @Override

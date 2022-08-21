@@ -62,5 +62,23 @@ public class Main {
         System.out.println(fiat);
         phone.turnOn();
         car.turnOn();
+
+        //task08
+        Human buyer = new Human("Jacob", "Wooden");
+        Human seller = new Human("Cris", "Caren");
+        buyer.setCash(2000d);
+        seller.setCash(2000d);
+        Phone xiaomi = new Phone("Xiaomi", "Mi 9",2019);
+        seller.setPhone(xiaomi);
+        Car automobile = new Car("Fiat", "Grande punto", 1430.0, 2010);
+        seller.setCar(automobile);
+        seller.animal = null;
+        xiaomi.sell(seller,buyer,950d);
+        System.out.println(buyer.getPhone());
+        automobile.sell(seller,buyer,1150d);
+        System.out.println(buyer.getCar());
+        Animal small = new Animal("mouse");
+        small.sell(seller,buyer,2d);
+        System.out.println(buyer.animal);
     }
 }
