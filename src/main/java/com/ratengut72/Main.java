@@ -1,7 +1,9 @@
 package com.ratengut72;
 
 import com.ratengut72.creatures.Animal;
+import com.ratengut72.creatures.FarmAnimal;
 import com.ratengut72.creatures.Human;
+import com.ratengut72.creatures.Pet;
 import com.ratengut72.devices.Car;
 import com.ratengut72.devices.Device;
 import com.ratengut72.devices.Phone;
@@ -10,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         //task 01
-        Animal dog = new Animal("dog");
+        Animal dog = new Pet("dog","Fafik");
         dog.feed();
         dog.takeForAWalk();
         dog.takeForAWalk();
@@ -25,7 +27,7 @@ public class Main {
         dog.takeForAWalk();
         dog.takeForAWalk();
         dog.feed();
-        Animal mouse = new Animal("mouse");
+        Animal mouse = new Pet("mouse","Mickey");
         mouse.feed();
         mouse.takeForAWalk();
         mouse.takeForAWalk();
@@ -77,8 +79,18 @@ public class Main {
         System.out.println(buyer.getPhone());
         automobile.sell(seller,buyer,1150d);
         System.out.println(buyer.getCar());
-        Animal small = new Animal("mouse");
+        Animal small = new Pet("mouse", "Miki");
         small.sell(seller,buyer,2d);
         System.out.println(buyer.animal);
+
+        //task09
+        FarmAnimal farm = new FarmAnimal("pig", 345d, "Piggy");
+        farm.feed();
+        System.out.println(farm);
+        farm.feed(29d);
+        System.out.println(farm);
+        farm.beEaten();
+        System.out.println(farm);
+        farm.feed();
     }
 }

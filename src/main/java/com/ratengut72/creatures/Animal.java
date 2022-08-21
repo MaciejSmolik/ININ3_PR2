@@ -1,19 +1,25 @@
 package com.ratengut72.creatures;
 
 import java.util.Objects;
-import java.util.UUID;
 
-public class Animal implements Sellable {
+public abstract class Animal implements Sellable, Feedable {
 
-    final String species;
-    private Double weight;
-    private String name;
-    private Double price;
+    protected final String species;
+    protected Double weight;
+    protected String name;
+    protected boolean isAlive = true;
+    protected Double price = 0.0;
 
-    public Animal(String species) {
+    public Animal(String species, String name) {
         this.species = species;
+        this.name = name;
         this.weight = WeightEstablisherFactory.establishWeight(species);
-        this.name = UUID.randomUUID().toString();
+    }
+
+    public Animal(String species, Double weight, String name) {
+        this.species = species;
+        this.weight = weight;
+        this.name = name;
     }
 
     public String getName() {
@@ -24,8 +30,9 @@ public class Animal implements Sellable {
         this.name = name;
     }
 
+    @Override
     public void feed() {
-        if (weight == 0.0d) {
+        if (!isAlive) {
             System.out.println("You cannot feed dead animal");
         } else {
             Double actual = this.weight;
@@ -34,13 +41,23 @@ public class Animal implements Sellable {
         }
     }
 
+    @Override
+    public void feed(Double weight) {
+        if (weight == null || weight <= 0.0)
+            System.out.println("You cannot feed with weight less or equal 0.0");
+        this.weight += weight;
+
+    }
+
     public void takeForAWalk() {
-        if (weight == 0.0d)
+        if (!isAlive)
             System.out.println("You cannot take for a walk dead animal");
         else {
             Double actual = this.weight;
-            if (weight - 1 < 0d)
+            if (weight - 1 < 0d) {
                 weight = 0d;
+                isAlive = false;
+            }
             else
                 weight--;
             System.out.println(String.format("Decreasing weight of this animal from: %f to %f", actual, weight));
@@ -88,6 +105,8 @@ public class Animal implements Sellable {
                 "species='" + species + '\'' +
                 ", weight=" + weight +
                 ", name='" + name + '\'' +
+                ", isAlive=" + isAlive +
+                ", price=" + price +
                 '}';
     }
 }
