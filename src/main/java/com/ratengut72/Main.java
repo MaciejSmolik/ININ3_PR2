@@ -128,5 +128,24 @@ public class Main {
         System.out.println(f.doesHumanHasSoldACarToAnotherHuman(sell,buy));
         System.out.println(f.doesHumanHasSoldACarToAnotherHuman(buy,sell));
         System.out.println(f.calculateNumberOfTransactions());
+
+        //task13
+        Application appFirst = new Application("Google Maps", "1.0",0.0);
+        Application appSecond = new Application("Spotify", "1.0", 23.99);
+        Application appThird = new Application("Adobe Photoshop", "2.0", 14.99);
+        Application appFourth = new Application("Figma", "1.0", 19.99);
+        Human maciej = new Human("Maciej", "Smolik");
+        maciej.setCash(20000d);
+        Phone xiao = new Phone("Xiaomi", "Mi 9 ",2019, maciej);
+        xiao.installAnApplication(appFirst);
+        xiao.installAnApplication(appSecond);
+        xiao.installAnApplication(appThird);
+        System.out.println(xiao.doesApplicationHasBeenInstalled(appFirst));
+        System.out.println(xiao.doesApplicationHasBeenInstalled("Spotify"));
+        System.out.println(xiao.doesApplicationHasBeenInstalled("Figma"));
+        System.out.println(xiao.calculateTotalApplicationsValue());
+        xiao.displayAllFreeApplications();
+        xiao.displayApplicationsInAlphabeticOrder();
+        xiao.displayApplicationsFromCheapestToMostExpensive();
     }
 }
