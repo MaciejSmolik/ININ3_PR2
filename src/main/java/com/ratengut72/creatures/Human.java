@@ -1,9 +1,11 @@
 package com.ratengut72.creatures;
 
 import com.ratengut72.devices.Car;
+import com.ratengut72.devices.Diesel;
 import com.ratengut72.devices.Phone;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Human {
@@ -13,12 +15,19 @@ public class Human {
     private Double salary = 0d;
     private Double cash = 0d;
     public Animal animal;
-    private Car car;
+    private Car[] garage;
     private Phone phone;
 
     public Human(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        garage = new Car[3];
+    }
+
+    public Human(String firstName, String lastName, int garageCapacity) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.garage = new Car[garageCapacity];
     }
 
     public String getFirstName() {
@@ -54,24 +63,54 @@ public class Human {
         }
     }
 
-    public Car getCar() {
-        return car;
+    public Car[] getGarage() {
+        return this.garage;
     }
 
-    public void setCar(Car car) {
-        if (Objects.nonNull(car)) {
-            if (this.salary >= car.price) {
-                System.out.println("Car bought by cash");
-                this.car = car;
-            } else if (this.salary > car.price / 12.0) {
-                System.out.println("Car bought by loan");
-                this.car = car;
-            } else {
-                System.out.println("Better go study or ask your boss for a raise");
+    public boolean isGarageFull() {
+        return Arrays.stream(garage).allMatch(Objects::nonNull);
+    }
+
+    public int getFirstEmptyPlaceInGarage() {
+        if (!isGarageFull()) {
+            for (int i = 0; i < garage.length; i++) {
+                if (garage[i] == null)
+                    return i;
             }
         }
+        return -1;
+    }
+
+    public Car getCar(int place) {
+        return garage[place];
+    }
+
+    public int getIndexOfCar(Car car) {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i].equals(car))
+                return i;
+        }
+        return -1;
+    }
+
+    public void setCar(Car car, int place) {
+        if (Objects.nonNull(car)) {
+            if (garage[place] == null) {
+                if (this.salary >= car.getPrice()) {
+                    System.out.println("Car bought by cash");
+                    this.garage[place] = car;
+                } else if (this.salary > car.getPrice() / 12.0) {
+                    System.out.println("Car bought by loan");
+                    this.garage[place] = car;
+                } else {
+                    System.out.println("Better go study or ask your boss for a raise");
+                }
+            }
+        } else if (garage[place] != null) {
+            System.out.println("This place is not empty, aborting");
+        }
         else
-            this.car = null;
+            this.garage[place] = null;
     }
 
 
@@ -101,6 +140,39 @@ public class Human {
             cash -= amount;
     }
 
+    public Double calculateGarageValue() {
+        return Arrays.stream(garage).filter(Objects::nonNull).map(car -> car.getPrice()).reduce(0.0,Double::sum);
+    }
+
+    public void sortCarsFromOldestToNewest() {
+        sortNullsToTheEnd();
+        for (int i = 0; i < garage.length - 1; i++) {
+            for (int j = 0; j < garage.length - 1 - i; j++) {
+                if (Objects.nonNull(garage[j]) && Objects.nonNull(garage[j+1])) {
+                    if (garage[j].getYearOfProduction() > garage[j+1].getYearOfProduction()) {
+                        swap(garage,j,j+1);
+                    }
+                }
+            }
+        }
+    }
+
+    private void sortNullsToTheEnd() {
+        for (int i = 0; i < garage.length - 1; i++) {
+            for (int j = 0; j < garage.length - 1 - i; j++) {
+                if (garage[j] == null) {
+                    swap(garage,j,j+1);
+                }
+            }
+        }
+    }
+
+    private static void swap(Car[] array, int i, int j) {
+        Car tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
     @Override
     public String toString() {
         return "Human{" +
@@ -108,7 +180,7 @@ public class Human {
                 ", lastName='" + lastName + '\'' +
                 ", salary=" + salary +
                 ", animal=" + animal +
-                ", car=" + car +
+                ", garage=" + Arrays.toString(garage) +
                 '}';
     }
 }

@@ -7,11 +7,27 @@ public abstract class Device implements Sellable {
     protected final String producer;
     protected final String model;
     protected final int yearOfProduction;
+    protected Double price = 0d;
 
     public Device(String producer, String model, int yearOfProduction) {
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
+    }
+
+    public Device(String producer, String model, int yearOfProduction, Double price) {
+        this.producer = producer;
+        this.model = model;
+        this.yearOfProduction = yearOfProduction;
+        this.price = price;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     protected abstract void turnOn();
@@ -24,6 +40,18 @@ public abstract class Device implements Sellable {
         if (yearOfProduction != device.yearOfProduction) return false;
         if (!producer.equals(device.producer)) return false;
         return model.equals(device.model);
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getYearOfProduction() {
+        return yearOfProduction;
     }
 
     @Override

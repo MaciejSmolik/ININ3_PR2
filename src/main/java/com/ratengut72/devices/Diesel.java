@@ -2,8 +2,12 @@ package com.ratengut72.devices;
 
 public class Diesel extends Car {
 
-    public Diesel(String producer, String model, Double weight, int yearOfProduction) {
-        super(producer, model, weight, yearOfProduction);
+    public Diesel(String producer, String model, int yearOfProduction, Double weight) {
+        super(producer, model, yearOfProduction, weight);
+    }
+
+    public Diesel(String producer, String model, int yearOfProduction, Double weight, Double price) {
+        super(producer, model, yearOfProduction, weight, price);
     }
 
     @Override

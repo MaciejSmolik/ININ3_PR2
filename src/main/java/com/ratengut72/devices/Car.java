@@ -6,11 +6,16 @@ import com.ratengut72.creatures.Sellable;
 public abstract class Car extends Device implements Sellable {
 
     private Double weight;
-    public Double price = 0d;
 
-    public Car(String producer, String model, Double weight, int yearOfProduction) {
+    public Car(String producer, String model, int yearOfProduction, Double weight) {
         super(producer,model,yearOfProduction);
         this.weight = weight;
+    }
+
+    public Car(String producer, String model, int yearOfProduction, Double weight, Double price) {
+        super(producer, model, yearOfProduction, price);
+        this.weight = weight;
+        this.price = price;
     }
 
     public abstract void refuel();
@@ -20,21 +25,21 @@ public abstract class Car extends Device implements Sellable {
         System.out.println("Car turned on");
     }
 
-    @Override
     public boolean sell(Human seller, Human buyer, Double price) {
-        if (seller.getCar()== null || !seller.getCar().equals(this))  {
-            System.out.println("Seller doesn't have that car for sell. It's scam.");
-            return false;
+        int sellerCarIndex = seller.getIndexOfCar(this);
+        if (sellerCarIndex == -1) {
+            throw new SellCarException("Seller doesn't have that car for sell. It's scam.");
         }
-        if (buyer.getCash() < price) {
-            System.out.println("Buyer doesn't have enough money. Aborting.");
-            return false;
+        if(buyer.isGarageFull()){
+            throw new SellCarException("Seller doesn't have space for that car");
         }
-
-        buyer.setCar(this);
-        seller.setCar(null);
+        if(buyer.getCash() < price){
+            throw new SellCarException("Buyer doesn't have enough money. Aborting");
+        }
+        buyer.getGarage()[buyer.getFirstEmptyPlaceInGarage()] = this;
         seller.addMoney(price);
         buyer.decreaseMoney(price);
+        seller.setCar(null,sellerCarIndex);
         System.out.println("Transaction between " + seller + " and " + buyer + " is done successfully.");
         return true;
     }
@@ -60,10 +65,11 @@ public abstract class Car extends Device implements Sellable {
     @Override
     public String toString() {
         return "Car{" +
-                "producer='" + producer + '\'' +
-                ", model='" + model + '\'' +
-                ", weight=" + weight +
+                "weight=" + weight +
                 ", price=" + price +
+                ", producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
                 '}';
     }
 }
