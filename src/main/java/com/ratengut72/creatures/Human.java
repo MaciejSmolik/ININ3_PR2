@@ -99,9 +99,11 @@ public class Human {
                 if (this.salary >= car.getPrice()) {
                     System.out.println("Car bought by cash");
                     this.garage[place] = car;
+                    car.getOwners().add(this);
                 } else if (this.salary > car.getPrice() / 12.0) {
                     System.out.println("Car bought by loan");
                     this.garage[place] = car;
+                    car.getOwners().add(this);
                 } else {
                     System.out.println("Better go study or ask your boss for a raise");
                 }

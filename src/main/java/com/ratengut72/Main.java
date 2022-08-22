@@ -118,5 +118,15 @@ public class Main {
         sell.sortCarsFromOldestToNewest();
         System.out.println(sell);
         System.out.println(sell.calculateGarageValue());
+
+        //task12
+        Human buy = new Human("B", "B", 10);
+        buy.setCash(10000d);
+        f.sell(sell,buy, 2000d);
+        System.out.println(f.isHumanHasBeenAnOwner(sell));
+        System.out.println(f.isHumanHasBeenAnOwner(buy));
+        System.out.println(f.doesHumanHasSoldACarToAnotherHuman(sell,buy));
+        System.out.println(f.doesHumanHasSoldACarToAnotherHuman(buy,sell));
+        System.out.println(f.calculateNumberOfTransactions());
     }
 }
